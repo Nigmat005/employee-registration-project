@@ -22,8 +22,6 @@ public class EmployeeController {
         Employee employee=Employee.builder().build();
         model.addAttribute("employeeObj",employee);
         model.addAttribute("states", DataGenerator.getAllStates());
-
-
         return "employee/employee-create";
     }
 
