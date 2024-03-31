@@ -1,9 +1,6 @@
 package com.cydeo.model;
 
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -30,14 +27,24 @@ public class Employee {
     @NotBlank
     @Size(max=12,min=2)
     private String firstName;
+    @NotBlank
+    @Size(max=12,min=2)
     private String lastName;
+
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate birthday;
+    @NotBlank
+    @Email
     private String email;
+    @NotBlank
     private String password;
+    @NotBlank
     private String address,address2;
+    @NotBlank
     private String city;
+    @NotBlank
     private String state;
+    @NotBlank
     private String zipCode;
 
 }

@@ -5,6 +5,7 @@ import com.cydeo.model.Employee;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -26,7 +27,13 @@ public class EmployeeController {
     }
 
     @PostMapping(value = "/list")
-    public String listEmployee(@Valid @ModelAttribute("employeeObj") Employee employee, Model model){
+    public String listEmployee(@Valid @ModelAttribute("employeeObj") Employee employee,BindingResult bindingResult, Model model){
+        // check error first
+        if(bindingResult.hasErrors()){
+            model.addAttribute("states", DataGenerator.getAllStates());
+            return "employee/employee-create";
+        }
+
         // store employee object everytime you call /register endpoint, otherwise get refreshed
         DataGenerator.saveEmployees(employee);
 
